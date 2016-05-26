@@ -1,7 +1,7 @@
 // ConsoleApplication2.cpp: определяет точку входа для консольного приложения.
 //
 
-#include "stdafx.h"
+// #include "stdafx.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -164,7 +164,6 @@ int readFromFile(FILE* file, char line[], int number) {
 		while (ret != '\n') {
 			line[i] = ret;
 			i++;
-			// printf("%c", ret);
 			fscanf(file, "%c", &ret);
 			if (feof(file)) {
 				break;
@@ -190,7 +189,7 @@ int countFileWords(FILE* file) {
 
 	while (!feof(file)) {
 			// очищаем буфер для цикла
-			for (int i = 0; i < sizeof(line); i++) {
+			for (int i = 0; i < 128; i++) {
 				line[i] = '\0';
 			}
 			readFromFile(file, line, 0); // читаем очередную строку
@@ -212,7 +211,7 @@ int toConsole(FILE* file) {
 	char line[128]; // буфер для считанной строки
   while (!feof(file)) {
 		// очищаем буфер для цикла
-		for (int i = 0; i < sizeof(line); i++) {
+		for (int i = 0; i < 128; i++) {
 			line[i] = '\0';
 		}
 	  readFromFile(file, line, 0); // читаем поток файла построчно в буфер
@@ -230,34 +229,34 @@ int main(int argc, char* argv[])
 
 	// Задание 1 - Проверяем, является ли заданный символ разделителем
 
-			 //char ch = 'y'; // Задаем проверяемый символ
-			 //printf("%i\n", isDelimeter(ch)); // Выводим в консоль результат выполнения функции isDelimeter
+			// char ch = 'y'; // Задаем проверяемый символ
+			// printf("%i\n", isDelimeter(ch)); // Выводим в консоль результат выполнения функции isDelimeter
 
 	// Задание 2 - Ввод строки с консоли в массив
 
-			 //printf("%i\n", fromConsole(line)); // Выводим длину введенной строки
+			// printf("%i\n", fromConsole(line)); // Выводим длину введенной строки
 
 	// Задание 3 - Число слов в строке символов
 
-		  //fromConsole(line); // заполняем массив
-		  //printf("\nЧисло слов в строке: %i\n", countWords(line)); // Выводим число слов
+		//  fromConsole(line); // заполняем массив
+		//  printf("\nЧисло слов в строке: %i\n", countWords(line)); // Выводим число слов
 
 	FILE* sFile; // присваиваем логическое имя файлу
 	sFile = fopen("temp.txt", "r"); // открываем файл с данными в режиме чтения
 
 	// Задание 4
 
-		 //printf("\nДлина строки: %i\n", readFromFile(sFile, line, 1));
+		// printf("\nДлина строки: %i\n", readFromFile(sFile, line, 1));
 
 	// Задание 5 - Считаем слова в файле
 
-		//printf("\nЧисло слов в файле: %i\n", countFileWords(sFile));
+		printf("\nЧисло слов в файле: %i\n", countFileWords(sFile));
 
 	// Задание 6 - Выводим в консоль содержимое файла
 
-		 toConsole(sFile);
+		// toConsole(sFile);
 
-    printf("\n");
+  printf("\n");
 	system("pause"); // Ждем ввода символа с клавиатуры
 
 	return 0;
